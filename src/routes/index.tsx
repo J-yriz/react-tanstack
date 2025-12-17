@@ -2,10 +2,10 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Rocket, Zap, Shield, ArrowRight, CheckCircle } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: ReactComponent,
 })
 
-function App() {
+function ReactComponent() {
   return (
     <main id='main-page' className="min-h-screen bg-gray-50 flex flex-col font-sans">
       {/* Navbar */}
