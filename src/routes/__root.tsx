@@ -21,5 +21,5 @@ export const Route = createRootRoute({
       />
     </>
   ),
-  notFoundComponent: () => <NotFound />,
+  notFoundComponent: () => <main id='not-found-page'><NotFound /></main>,
 })
