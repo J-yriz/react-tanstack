@@ -1,3 +1,4 @@
+import CompactQuickCard from '@/components/home/CompactQuickCard'
 import ModalAddTransaction from '@/components/home/ModalAddTransaction'
 import ModalSettings from '@/components/home/ModalSettings'
 import QuickCard from '@/components/home/QuickCard'
@@ -6,15 +7,14 @@ import getRandomColor from '@/utility/function/getRandomColor'
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useState } from 'react'
 
-const COMPACT_ENTER_Y = 72
-const COMPACT_EXIT_Y = 28
+const SCROLL_Y = 250;
 
 export const Route = createFileRoute('/')({
   component: ReactComponent,
 })
 
 function ReactComponent() {
-  const [isCompact, setIsCompact] = useState<boolean>(false)
+  const [compactQuickCard, setCompactQuickCard] = useState<boolean>(false)
 
   const [modalOpen, setModalOpen] = useState<"settings" | "add" | null>(null)
   const [isClosing, setIsClosing] = useState<boolean>(false)
@@ -60,25 +60,16 @@ function ReactComponent() {
   )
 
   useEffect(() => {
-    let ticking = false
-    const update = () => {
-      const y = window.scrollY
-      setIsCompact((prev) => {
-        if (y > COMPACT_ENTER_Y) return true
-        if (y < COMPACT_EXIT_Y) return false
-        return prev
-      })
-      ticking = false
-    }
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true
-        requestAnimationFrame(update)
+    const handleScroll = () => {
+      if (window.scrollY > SCROLL_Y) {
+        setCompactQuickCard(true)
+      } else {
+        setCompactQuickCard(false)
       }
     }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -87,6 +78,7 @@ function ReactComponent() {
     } else {
       document.body.style.overflow = 'auto'
     }
+
     return () => {
       document.body.style.overflow = 'auto'
     }
@@ -97,7 +89,10 @@ function ReactComponent() {
       <p className='text-xl sm:text-2xl md:text-3xl font-bold'>Dashboard</p>
 
       {/* Quick Information and Add Transaction */}
-      <QuickCard isCompact={isCompact} setModalOpen={setModalOpen} />
+      <QuickCard setModalOpen={setModalOpen} />
+
+      {/* Compact QuickCard */}
+      <CompactQuickCard compactQuickCard={compactQuickCard} setModalOpen={setModalOpen} />
 
       {/* Transactions History */}
       <div className='mt-8'>
@@ -105,7 +100,7 @@ function ReactComponent() {
       </div>
 
       <div
-        className={`fixed inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-[2px] transition-opacity duration-300 ease-out
+        className={`fixed inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-[2px] transition-opacity duration-300 ease-out
           ${!modalOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'}`}
         onClick={handleCloseModal}
       >

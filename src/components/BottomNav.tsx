@@ -1,7 +1,7 @@
 const BottomNav = () => {
     return (
-        <nav>
-            
+        <nav className='fixed bottom-8 left-6 right-6 bg-[#9EF7FF] py-2.5'>
+            <p>ea</p>
         </nav>
     )
 }

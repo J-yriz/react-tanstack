@@ -1,6 +1,9 @@
 interface IQuickCardProps {
-  isCompact: boolean
   setModalOpen: (isOpen: 'settings' | 'add' | null) => void
+}
+
+interface ICompactQuickCardProps extends IQuickCardProps {
+  compactQuickCard: boolean
 }
 
 interface ITransactionHistoryProps {
