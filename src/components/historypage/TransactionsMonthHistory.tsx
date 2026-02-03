@@ -1,17 +1,16 @@
 
 import { Clock9, Settings } from "lucide-react"
 
-const TransactionsHistory = ({ transactionsByDay, setModalOpen }: ITransactionHistoryProps) => {
+const TransactionsMonthHistory = ({ transactionsByDay, setModalOpen }: ITransactionHistoryProps) => {
     return (
         <>
-            <p className='text-xl sm:text-2xl md:text-3xl font-bold'>Transactions History</p>
             <div className='flex flex-col gap-y-9 w-full'>
                 {transactionsByDay.map((items) => (
-                    <div key={items.date} className='flex flex-col gap-y-3'>
+                    <div key={items.date} className='flex flex-col'>
                         <div className='flex items-center gap-x-1.5'>
-                            <Clock9 className='h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6' />
-                            <p className='text-xs sm:text-base md:text-lg'>{items.date} transactions</p>
+                            <p className='text-xl sm:text-2xl md:text-3xl font-bold'>{items.date}</p>
                         </div>
+                            <p className="text-sm pb-3">{items.date} 2025</p>
                         <div className='flex flex-col gap-y-5'>
                             {items.transactions.map((trans, index) => (
                                 <div key={`${items.date}-${index}`} className='flex items-end justify-between'>
@@ -44,4 +43,4 @@ const TransactionsHistory = ({ transactionsByDay, setModalOpen }: ITransactionHi
     )
 }
 
-export default TransactionsHistory
+export default TransactionsMonthHistory
