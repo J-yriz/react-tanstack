@@ -1,7 +1,7 @@
 const CompactQuickCard = ({ compactQuickCard, setModalOpen }: ICompactQuickCardProps) => {
     return (
-        <div className={`fixed top-0 left-0 right-0 z-10 transition-transform duration-500 ease-in-out ${compactQuickCard ? 'translate-y-0' : '-translate-y-full'}`}>
-            <div className='bg-[#FFFFAF] gap-y-3 border-2 rounded-lg flex flex-col justify-between p-3 mt-5 mx-6'>
+        <div className={`fixed top-0 left-0 right-0 z-10 p-6 transition-transform duration-500 ease-in-out pointer-events-none ${compactQuickCard ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div className='bg-[#FFFFAF] gap-y-3 border-2 rounded-lg flex flex-col justify-between p-3 max-w-3xl mx-auto w-full pointer-events-auto'>
                 <div className='flex flex-col'>
                     <p className='text-lg sm:text-xl md:text-2xl'>
                         IDR 10.000.000

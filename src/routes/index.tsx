@@ -85,18 +85,20 @@ function ReactComponent() {
   }, [modalOpen])
 
   return (
-    <main id='main-page' className='p-6 relative'>
-      <p className='text-xl sm:text-2xl md:text-3xl font-bold'>Dashboard</p>
+    <main id='main-page' className='p-6 relative pb-24'>
+      <div className="max-w-3xl mx-auto w-full">
+        <p className='text-xl sm:text-2xl md:text-3xl font-bold'>Dashboard</p>
 
-      {/* Quick Information and Add Transaction */}
-      <QuickCard setModalOpen={setModalOpen} />
+        {/* Quick Information and Add Transaction */}
+        <QuickCard setModalOpen={setModalOpen} />
 
-      {/* Compact QuickCard */}
-      <CompactQuickCard compactQuickCard={compactQuickCard} setModalOpen={setModalOpen} />
+        {/* Compact QuickCard */}
+        <CompactQuickCard compactQuickCard={compactQuickCard} setModalOpen={setModalOpen} />
 
-      {/* Transactions History */}
-      <div className='mt-8'>
-        <TransactionsHistory transactionsByDay={transactionsByDay} setModalOpen={setModalOpen} />
+        {/* Transactions History */}
+        <div className='mt-8'>
+          <TransactionsHistory transactionsByDay={transactionsByDay} setModalOpen={setModalOpen} />
+        </div>
       </div>
 
       <div
