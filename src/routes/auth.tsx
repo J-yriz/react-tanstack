@@ -1,7 +1,7 @@
-import SignIn from '@/components/auth/SignIn'
-import SignUp from '@/components/auth/SignUp'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
+import SignIn from '@/components/auth/SignIn'
+import SignUp from '@/components/auth/SignUp'
 
 export const Route = createFileRoute('/auth')({
   component: RouteComponent,

@@ -19,3 +19,8 @@ interface IModalSettingsProps {
 interface IModalAddTransactionProps extends IModalSettingsProps {
     
 }
+
+interface NavItem {
+  path: string;
+  icon: (isActive: boolean) => TSX.Element; 
+}

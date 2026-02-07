@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ChartRouteImport } from './routes/chart'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as TabBarRouteImport } from './routes/TabBar'
+import { Route as HistoryPageRouteImport } from './routes/HistoryPage'
+import { Route as DashBoardRouteImport } from './routes/DashBoard'
+import { Route as CalendarPageRouteImport } from './routes/CalendarPage'
 import { Route as IndexRouteImport } from './routes/index'
 
 const ChartRoute = ChartRouteImport.update({
@@ -23,6 +27,26 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TabBarRoute = TabBarRouteImport.update({
+  id: '/TabBar',
+  path: '/TabBar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryPageRoute = HistoryPageRouteImport.update({
+  id: '/HistoryPage',
+  path: '/HistoryPage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashBoardRoute = DashBoardRouteImport.update({
+  id: '/DashBoard',
+  path: '/DashBoard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarPageRoute = CalendarPageRouteImport.update({
+  id: '/CalendarPage',
+  path: '/CalendarPage',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +55,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/CalendarPage': typeof CalendarPageRoute
+  '/DashBoard': typeof DashBoardRoute
+  '/HistoryPage': typeof HistoryPageRoute
+  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
   '/chart': typeof ChartRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/CalendarPage': typeof CalendarPageRoute
+  '/DashBoard': typeof DashBoardRoute
+  '/HistoryPage': typeof HistoryPageRoute
+  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
   '/chart': typeof ChartRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/CalendarPage': typeof CalendarPageRoute
+  '/DashBoard': typeof DashBoardRoute
+  '/HistoryPage': typeof HistoryPageRoute
+  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
   '/chart': typeof ChartRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
+<<<<<<< HEAD
   fullPaths: '/' | '/auth' | '/chart'
   fileRoutesByTo: FileRoutesByTo
   to: '/' | '/auth' | '/chart'
   id: '__root__' | '/' | '/auth' | '/chart'
+=======
+  fullPaths:
+    | '/'
+    | '/CalendarPage'
+    | '/DashBoard'
+    | '/HistoryPage'
+    | '/TabBar'
+    | '/auth'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/CalendarPage'
+    | '/DashBoard'
+    | '/HistoryPage'
+    | '/TabBar'
+    | '/auth'
+  id:
+    | '__root__'
+    | '/'
+    | '/CalendarPage'
+    | '/DashBoard'
+    | '/HistoryPage'
+    | '/TabBar'
+    | '/auth'
+>>>>>>> dev-mervin
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalendarPageRoute: typeof CalendarPageRoute
+  DashBoardRoute: typeof DashBoardRoute
+  HistoryPageRoute: typeof HistoryPageRoute
+  TabBarRoute: typeof TabBarRoute
   AuthRoute: typeof AuthRoute
   ChartRoute: typeof ChartRoute
 }
@@ -75,6 +141,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/TabBar': {
+      id: '/TabBar'
+      path: '/TabBar'
+      fullPath: '/TabBar'
+      preLoaderRoute: typeof TabBarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/HistoryPage': {
+      id: '/HistoryPage'
+      path: '/HistoryPage'
+      fullPath: '/HistoryPage'
+      preLoaderRoute: typeof HistoryPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/DashBoard': {
+      id: '/DashBoard'
+      path: '/DashBoard'
+      fullPath: '/DashBoard'
+      preLoaderRoute: typeof DashBoardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/CalendarPage': {
+      id: '/CalendarPage'
+      path: '/CalendarPage'
+      fullPath: '/CalendarPage'
+      preLoaderRoute: typeof CalendarPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +181,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalendarPageRoute: CalendarPageRoute,
+  DashBoardRoute: DashBoardRoute,
+  HistoryPageRoute: HistoryPageRoute,
+  TabBarRoute: TabBarRoute,
   AuthRoute: AuthRoute,
   ChartRoute: ChartRoute,
 }

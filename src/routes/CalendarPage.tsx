@@ -1,21 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useEffect, useMemo, useState } from 'react'
-import CompactQuickCard from '@/components/home/CompactQuickCard'
+import { useMemo, useState } from 'react'
+import Search from '@/components/calendar/Search';
+import Calendar from '@/components/calendar/Calendar';
+import Notes from '@/components/calendar/Notes'
+import getRandomColor from '@/utility/function/getRandomColor'
 import ModalAddTransaction from '@/components/home/ModalAddTransaction'
 import ModalSettings from '@/components/home/ModalSettings'
-import QuickCard from '@/components/home/QuickCard'
 import TransactionsHistory from '@/components/home/TransactionsHistory'
-import getRandomColor from '@/utility/function/getRandomColor'
 
-const SCROLL_Y = 250;
-
-export const Route = createFileRoute('/')({
-  component: ReactComponent,
+export const Route = createFileRoute('/CalendarPage')({
+  component: RouteComponent,
 })
 
-function ReactComponent() {
-  const [compactQuickCard, setCompactQuickCard] = useState<boolean>(false)
-
+function RouteComponent() {
   const [modalOpen, setModalOpen] = useState<"settings" | "add" | null>(null)
   const [isClosing, setIsClosing] = useState<boolean>(false)
 
@@ -59,46 +56,26 @@ function ReactComponent() {
     [],
   )
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > SCROLL_Y) {
-        setCompactQuickCard(true)
-      } else {
-        setCompactQuickCard(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'auto'
-    }
-
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [modalOpen])
-
   return (
-    <main id='main-page' className='p-6 relative pb-24'>
-      <div className="max-w-3xl mx-auto w-full">
-        <p className='text-xl sm:text-2xl md:text-3xl font-bold'>Dashboard</p>
+        <main id='calendarpage' className='p-6 relative'>
+             <h1 className='mx-auto max-w-md mt-5 text-xl'><b>Calendar</b></h1>
+            <div className='mx-auto max-w-md mt-5'> <Search/></div>
+             <div className='mt-6'>
+               <Calendar/>
+           </div>
+       
+            <div className='flex flex-col text-end mx-auto max-w-md mt-5'>
+                    <p className='text-3xl'>
+                        IDR 40.000,00
+                    </p>
+                    <p className='text-xs sm:text-base md:text-lg'>
+                       October total spending money
+                    </p>
+            </div>
+           <Notes/>
 
-        {/* Quick Information and Add Transaction */}
-        <QuickCard setModalOpen={setModalOpen} />
-
-        {/* Compact QuickCard */}
-        <CompactQuickCard compactQuickCard={compactQuickCard} setModalOpen={setModalOpen} />
-
-        {/* Transactions History */}
-        <div className='mt-8'>
-          <TransactionsHistory transactionsByDay={transactionsByDay} setModalOpen={setModalOpen} />
-        </div>
+             <div className='mt-8'>
+        <TransactionsHistory transactionsByDay={transactionsByDay} setModalOpen={setModalOpen} />
       </div>
 
       <div
@@ -114,6 +91,8 @@ function ReactComponent() {
           )
         )}
       </div>
-    </main>
-  )
+       
+       
+           </main>
+    )
 }
