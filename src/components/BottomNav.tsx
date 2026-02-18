@@ -25,7 +25,7 @@ const BottomNav = () => {
       ),
     },
     {
-      path: '/chart',
+      path: '/ChartPage',
       icon: (isActive) => (
         <ChartColumn  className={`w-6 h-6 ${isActive ? 'text-blue-600' : 'text-black'}`}/>
       ),

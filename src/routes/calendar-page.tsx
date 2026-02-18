@@ -2,13 +2,13 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useMemo, useState } from 'react'
 import Search from '@/components/calendar/Search';
 import Calendar from '@/components/calendar/Calendar';
-import Notes from '@/components/calendar/Notes'
+import NotesCalendar from '@/components/calendar/NotesCalendar'
 import getRandomColor from '@/utility/function/getRandomColor'
 import ModalAddTransaction from '@/components/home/ModalAddTransaction'
 import ModalSettings from '@/components/home/ModalSettings'
 import TransactionsHistory from '@/components/home/TransactionsHistory'
 
-export const Route = createFileRoute('/CalendarPage')({
+export const Route = createFileRoute('/calendar-page')({
   component: RouteComponent,
 })
 
@@ -72,7 +72,7 @@ function RouteComponent() {
                        October total spending money
                     </p>
             </div>
-           <Notes/>
+           <NotesCalendar/>
 
              <div className='mt-8'>
         <TransactionsHistory transactionsByDay={transactionsByDay} setModalOpen={setModalOpen} />

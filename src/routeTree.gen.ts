@@ -9,36 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as HistoryPageRouteImport } from './routes/history-page'
+import { Route as ChartPageRouteImport } from './routes/chart-page'
+import { Route as CalendarPageRouteImport } from './routes/calendar-page'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as TabBarRouteImport } from './routes/TabBar'
-import { Route as HistoryPageRouteImport } from './routes/HistoryPage'
-import { Route as DashBoardRouteImport } from './routes/DashBoard'
-import { Route as CalendarPageRouteImport } from './routes/CalendarPage'
 import { Route as IndexRouteImport } from './routes/index'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TabBarRoute = TabBarRouteImport.update({
-  id: '/TabBar',
-  path: '/TabBar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HistoryPageRoute = HistoryPageRouteImport.update({
-  id: '/HistoryPage',
-  path: '/HistoryPage',
+  id: '/history-page',
+  path: '/history-page',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashBoardRoute = DashBoardRouteImport.update({
-  id: '/DashBoard',
-  path: '/DashBoard',
+const ChartPageRoute = ChartPageRouteImport.update({
+  id: '/chart-page',
+  path: '/chart-page',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarPageRoute = CalendarPageRouteImport.update({
-  id: '/CalendarPage',
-  path: '/CalendarPage',
+  id: '/calendar-page',
+  path: '/calendar-page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,100 +43,76 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/CalendarPage': typeof CalendarPageRoute
-  '/DashBoard': typeof DashBoardRoute
-  '/HistoryPage': typeof HistoryPageRoute
-  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
+  '/calendar-page': typeof CalendarPageRoute
+  '/chart-page': typeof ChartPageRoute
+  '/history-page': typeof HistoryPageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/CalendarPage': typeof CalendarPageRoute
-  '/DashBoard': typeof DashBoardRoute
-  '/HistoryPage': typeof HistoryPageRoute
-  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
+  '/calendar-page': typeof CalendarPageRoute
+  '/chart-page': typeof ChartPageRoute
+  '/history-page': typeof HistoryPageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/CalendarPage': typeof CalendarPageRoute
-  '/DashBoard': typeof DashBoardRoute
-  '/HistoryPage': typeof HistoryPageRoute
-  '/TabBar': typeof TabBarRoute
   '/auth': typeof AuthRoute
+  '/calendar-page': typeof CalendarPageRoute
+  '/chart-page': typeof ChartPageRoute
+  '/history-page': typeof HistoryPageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/CalendarPage'
-    | '/DashBoard'
-    | '/HistoryPage'
-    | '/TabBar'
-    | '/auth'
+  fullPaths: '/' | '/auth' | '/calendar-page' | '/chart-page' | '/history-page'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/CalendarPage'
-    | '/DashBoard'
-    | '/HistoryPage'
-    | '/TabBar'
-    | '/auth'
+  to: '/' | '/auth' | '/calendar-page' | '/chart-page' | '/history-page'
   id:
     | '__root__'
     | '/'
-    | '/CalendarPage'
-    | '/DashBoard'
-    | '/HistoryPage'
-    | '/TabBar'
     | '/auth'
+    | '/calendar-page'
+    | '/chart-page'
+    | '/history-page'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CalendarPageRoute: typeof CalendarPageRoute
-  DashBoardRoute: typeof DashBoardRoute
-  HistoryPageRoute: typeof HistoryPageRoute
-  TabBarRoute: typeof TabBarRoute
   AuthRoute: typeof AuthRoute
+  CalendarPageRoute: typeof CalendarPageRoute
+  ChartPageRoute: typeof ChartPageRoute
+  HistoryPageRoute: typeof HistoryPageRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/history-page': {
+      id: '/history-page'
+      path: '/history-page'
+      fullPath: '/history-page'
+      preLoaderRoute: typeof HistoryPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chart-page': {
+      id: '/chart-page'
+      path: '/chart-page'
+      fullPath: '/chart-page'
+      preLoaderRoute: typeof ChartPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar-page': {
+      id: '/calendar-page'
+      path: '/calendar-page'
+      fullPath: '/calendar-page'
+      preLoaderRoute: typeof CalendarPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/TabBar': {
-      id: '/TabBar'
-      path: '/TabBar'
-      fullPath: '/TabBar'
-      preLoaderRoute: typeof TabBarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/HistoryPage': {
-      id: '/HistoryPage'
-      path: '/HistoryPage'
-      fullPath: '/HistoryPage'
-      preLoaderRoute: typeof HistoryPageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/DashBoard': {
-      id: '/DashBoard'
-      path: '/DashBoard'
-      fullPath: '/DashBoard'
-      preLoaderRoute: typeof DashBoardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/CalendarPage': {
-      id: '/CalendarPage'
-      path: '/CalendarPage'
-      fullPath: '/CalendarPage'
-      preLoaderRoute: typeof CalendarPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,11 +127,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CalendarPageRoute: CalendarPageRoute,
-  DashBoardRoute: DashBoardRoute,
-  HistoryPageRoute: HistoryPageRoute,
-  TabBarRoute: TabBarRoute,
   AuthRoute: AuthRoute,
+  CalendarPageRoute: CalendarPageRoute,
+  ChartPageRoute: ChartPageRoute,
+  HistoryPageRoute: HistoryPageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
