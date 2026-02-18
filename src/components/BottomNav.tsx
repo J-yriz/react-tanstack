@@ -7,13 +7,13 @@ const BottomNav = () => {
 
    const navItems: Array<NavItem> = [
     {
-      path: '/calendarpage',
+      path: '/calendar-page',
       icon: (isActive) => (
         <CalendarDays className={`w-6 h-6 ${isActive ? 'text-blue-600' : 'text-black'}`}/>
       ),
     },
     {
-      path: '/HistoryPage',
+      path: '/history-page',
       icon: (isActive) => (
         <Clock  className={`w-6 h-6 ${isActive ? 'text-blue-600' : 'text-black'}`}/>
         ),
@@ -25,7 +25,7 @@ const BottomNav = () => {
       ),
     },
     {
-      path: '/ChartPage',
+      path: '/chart-page',
       icon: (isActive) => (
         <ChartColumn  className={`w-6 h-6 ${isActive ? 'text-blue-600' : 'text-black'}`}/>
       ),
